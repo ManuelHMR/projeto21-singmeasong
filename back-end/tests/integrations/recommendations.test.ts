@@ -31,14 +31,32 @@ describe("POST /recommendations", () =>{
 });
 
 describe("POST /recommendations/:id/upvote", () =>{
-    it("", async ()=>{
-
+    it("upvote a valid recommendation", async ()=>{
+        const result = await supertest(app).post("/recommendations/1/upvote");
+        expect(result.statusCode).toBe(200);
+    });
+    it("upvote an invalid recommendation", async ()=>{
+        const result = await supertest(app).post("/recommendations/999/upvote");
+        expect(result.statusCode).toBe(404);
+    });
+    it("upvote without params", async ()=>{
+        const result = await supertest(app).post("/recommendations/upvote");
+        expect(result.statusCode).toBe(404);
     });
 });
 
 describe("POST /recommendations/:id/downvote", () =>{
-    it("", async ()=>{
-
+    it("downvote a valid recommendation", async ()=>{
+        const result = await supertest(app).post("/recommendations/1/downvote");
+        expect(result.statusCode).toBe(200);
+    });
+    it("downvote an invalid recommendation", async ()=>{
+        const result = await supertest(app).post("/recommendations/999/downvote");
+        expect(result.statusCode).toBe(404);
+    });
+    it("downvote without params", async ()=>{
+        const result = await supertest(app).post("/recommendations/downvote");
+        expect(result.statusCode).toBe(404);
     });
 });
 
