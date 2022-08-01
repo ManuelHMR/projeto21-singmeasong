@@ -3,7 +3,10 @@ import app from "../../src/app";
 import { prisma } from "./../../src/database";
 
 afterAll( async ()=>{
-    await prisma.$executeRaw`TRUNCATE TABLE recommendations;`;
+    await prisma.$executeRaw`
+        TRUNCATE TABLE recommendations
+        RESTART IDENTITY;
+    `;
     await prisma.$disconnect();
 })
 
