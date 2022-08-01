@@ -26,16 +26,44 @@ Projeto que visa treinar testes automatizados em aplicação fullstack elaborada
 ## :rocket: Rotas
 
 ```yml
-POST /cadastro
-    - Rota para cadastrar um novo usuário
+- POST /
+    - Route to register a new recommendation link
     - headers: {}
-    - body:{
-        "nome": "Lorem ipsum",
-        "email": "lorem@gmail.com",
-        "senha": "loremipsum"
-}
+    - body: {
+        "name": "Some no-repeated name",
+        "youtubeLink": "https://youtu.be/..."
+    }
 ```
-    
+```yml
+- GET /
+    - Route to get a list of 10 recommendations
+    - headers: {}
+    - body: {}
+```
+```yml
+- GET /top/:amount
+    - Route to get a list of the top amount of recommendations
+    - headers: {}
+    - body: {}
+```
+```yml
+- GET /:id
+    - Route to get the recommendation with the corresponding id
+    - headers: {}
+    - body: {}
+```
+```yml
+- POST /:id/upvote
+    - Route to increase the score of the recommendation with the corresponding id by 1
+    - headers: {}
+    - body: {}
+```
+```yml
+- POST /:id/downvote
+    - Route to decrement the score of the recommendation with the corresponding id by 1
+    - headers: {}
+    - body: {}
+``` 
 
 ***
 
