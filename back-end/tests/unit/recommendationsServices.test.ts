@@ -58,6 +58,7 @@ describe("tests downvote service", () => {
         expect(result).toBe(undefined);
     });
     it("try to downvote and remove a recommendation", async () =>{
+        recommendationFull.score = -6;
         jest.spyOn(recommendationRepository, 'find')
         .mockImplementationOnce(() : any=> recommendationFull);
         jest.spyOn(recommendationRepository, 'updateScore')
@@ -74,26 +75,6 @@ describe("tests downvote service", () => {
             type: 'not_found',
         });
     });
-    it('Downvote a recommendation to -6 then delete it', async () => {
-        const recommendation = recommendationFactory()
-        const recommendationData = { ...recommendation, id: 1, score: 0 }
-        const score = -6
-    
-        jest.spyOn(recommendationRepository, 'find')
-          .mockImplementationOnce((): any => recommendationData)
-    
-        jest.spyOn(recommendationRepository, 'updateScore')
-          .mockImplementationOnce((): any => { return { ...recommendationData, score } })
-    
-        jest.spyOn(recommendationRepository, 'remove')
-          .mockImplementationOnce((): any => { })
-    
-        await recommendationService.downvote(recommendationData.id)
-    
-        expect(recommendationRepository.find).toBeCalled()
-        expect(recommendationRepository.updateScore).toBeCalled()
-        expect(recommendationRepository.remove).toBeCalled()
-      });
 });
 
 describe("tests getById service", () => {

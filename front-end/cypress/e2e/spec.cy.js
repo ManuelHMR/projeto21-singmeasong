@@ -75,5 +75,5 @@ describe("tests header buttons", ()=>{
   });
   it("reset data base", ()=> {
     cy.request("POST", "http://localhost:5000/tests/clear");
-  })
+  });
 });

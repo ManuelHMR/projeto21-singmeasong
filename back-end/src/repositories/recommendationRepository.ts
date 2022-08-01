@@ -64,7 +64,7 @@ async function updateScore(id: number, operation: "increment" | "decrement") {
 }
 
 async function remove(id: number) {
-  await prisma.recommendation.delete({
+  return prisma.recommendation.delete({
     where: { id },
   });
 }
