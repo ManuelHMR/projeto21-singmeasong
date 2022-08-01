@@ -11,6 +11,7 @@ for(let i = 0; i < 4; i++){
 
 describe('register some recommendations', () => {
   it('register a recommendation', () => {
+    cy.request("POST", "http://localhost:5000/tests/clear");
     cy.visit("http://localhost:3000");
     cy.get("#name").type(recommendation.name);
     cy.get("#youtubeLink").type(recommendation.youtubeLink);
@@ -70,4 +71,7 @@ describe("tests header buttons", ()=>{
   it("tests random button", () =>{
     cy.get("#random").click();
   });
+  it("reset data base", ()=> {
+    cy.request("POST", "http://localhost:5000/tests/clear");
+  })
 });
