@@ -1,25 +1,20 @@
+import { recommendationFactory } from "../tests/factories/recomendationsFactory.js";
 import { prisma } from "./../src/database.js";
 
+const SEED_SIZE = 5;
+
 async function main(){
-    await prisma.$executeRaw`TRUNCATE TABLE recommendations;`;
+    await prisma.$executeRaw`
+        TRUNCATE TABLE recommendations
+        RESTART IDENTITY;
+    `;
+
+    let dataArr = [];
+    for(let i = 0; i < SEED_SIZE; i++){
+        dataArr.push(recommendationFactory());
+    };
     await prisma.recommendation.createMany({
-        data: [
-            {
-                id: 1,
-                name: "seed 1",
-                youtubeLink:"https://www.youtube.com/watch?v=QJJYpsA5tv8"
-            },
-            {
-                id: 2,
-                name: "seed 2",
-                youtubeLink:"https://www.youtube.com/watch?v=QJJYpsA5tv8"
-            },
-            {
-                id: 3, 
-                name: "seed 3",
-                youtubeLink:"https://www.youtube.com/watch?v=QJJYpsA5tv8"
-            },
-        ]
+        data: dataArr
     });
 };
 

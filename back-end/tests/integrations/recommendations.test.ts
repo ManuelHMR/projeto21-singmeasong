@@ -92,7 +92,6 @@ describe("GET /recommendations/top/:amount", () =>{
     });
     it("try to get more ranked recommendations than exists", async ()=>{
         const result = await supertest(app).get("/recommendations/top/999");
-        console.log(result.text)
         expect(result).not.toBeNull();
     });
 });
