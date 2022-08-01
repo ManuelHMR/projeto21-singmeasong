@@ -10,8 +10,10 @@ for(let i = 0; i < 4; i++){
 };
 
 describe('register some recommendations', () => {
-  it('register a recommendation', () => {
+  it("make sure that datbase is clear", ()=>{
     cy.request("POST", "http://localhost:5000/tests/clear");
+  })
+  it('register a recommendation', () => {
     cy.visit("http://localhost:3000");
     cy.get("#name").type(recommendation.name);
     cy.get("#youtubeLink").type(recommendation.youtubeLink);

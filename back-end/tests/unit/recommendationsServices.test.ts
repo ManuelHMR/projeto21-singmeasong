@@ -63,9 +63,9 @@ describe("tests downvote service", () => {
         jest.spyOn(recommendationRepository, 'updateScore')
         .mockImplementationOnce(() : any=> recommendationFull);
         jest.spyOn(recommendationRepository, 'remove')
-        .mockImplementationOnce(null);
+        .mockImplementationOnce(() : any => null);
         const result = await recommendationService.downvote(recommendationFull.id);
-        expect(result).toBe(undefined);
+        expect(result).toBeUndefined();
     });
     it("try to downvote an invalid recommendation", async ()=>{
         jest.spyOn(recommendationRepository, 'find').mockImplementationOnce(null);
